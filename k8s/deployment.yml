@@ -1,21 +1,24 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: node-example
+  name: csc547-hpa-node
 spec:
+  selector:
+    matchLabels:
+      app: csc547-hpa-node
   replicas: 1
   template:
     metadata:
       labels:
-        app: node-example
+        app: csc547-hpa-node
     spec:
       containers:
-      - name: node-example
-        image: vamin2/node-example
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 3000
-        resources:
+        - name: csc547-hpa-node
+          image: csc547-hpa-node:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
+          resources:
             limits:
               cpu: "0.5"
             requests:
