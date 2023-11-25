@@ -3,12 +3,12 @@ kind: Service
 metadata:
   name: csc547-hpa-node-lb
   labels:
-    app: csc547-hpa-node-lb
+    app: csc547-hpa-node
 spec:
   selector:
-    app: csc547-hpa-node-lb
+    app: csc547-hpa-node
   ports:
     - port: 3000
       protocol: TCP
       nodePort: 30001
-  type: LoadBalancer
+  type: LoadBalancer¸
