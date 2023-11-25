@@ -74,13 +74,14 @@ Steps to run the sample HPA after installing required tools.
   - Clone this project
   - Make sure Docker is running
   - Navigate the k8s folder, run
-    - `kubectl apply -f php-apache.yml` to create the deployment and service
-    - `kubectl apply -f hpa.yml` to create the HPA
+    - `kubectl apply -f php-apache.yml` to create the deployment and service for simple php application
+    - `kubectl apply -f fibonacci.yml` to create the deployment and service for fibonacci application
+    - `kubectl apply -f hpa.yml` to create the HPA, remember to change the scaleTargetRef.name to the deployment name
   - To verify the creations, run
     - `kubectl get deploy` to confirm the creation of the deployment
     - `kubectl get service` to confirm the creation of the load balancer service
     - `kubectl get hpa` to confirm the creation of the HPA
-  - Run `minikube service php-apache` to check the php-apache pod(container) is working or not. If not running, it will start the node application and open it in the browser. This will give the address of the php application.
+  - Run `minikube service php-apache` / `minikube service fibonacci-service` to check the php-apache pod(container) is working or not. If not running, it will start the node application and open it in the browser. This will give the address of the php application.
   - The load is generated using the locust files
     - Run `pip3 install locust` on mac / `pip install locust` on windows
     - Run `locust -f <load_file>` (ramp.py, custom_load.py) to start the load. The locust tool will open in the browser
