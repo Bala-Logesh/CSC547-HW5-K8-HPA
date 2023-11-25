@@ -6,7 +6,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: php-apache
+    name: fibonacci-deploy
   minReplicas: 1
   maxReplicas: 25
   metrics:

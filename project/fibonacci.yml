@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fibonacci-deploy
+spec:
+  selector:
+    matchLabels:
+      run: fibonacci-deploy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: fibonacci-deploy
+    spec:
+      containers:
+        - name: fibonacci-deploy
+          image: bala18/fibonacci:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 200m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fibonacci-service
+  labels:
+    run: fibonacci-deploy
+spec:
+  selector:
+    run: fibonacci-deploy
+  type: NodePort
+  ports:
+    - port: 80
+      nodePort: 32000
+      targetPort: 80
